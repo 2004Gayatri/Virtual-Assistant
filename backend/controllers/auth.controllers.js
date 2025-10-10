@@ -42,10 +42,10 @@ export const signUp = async (req , res)=>{
 
 export const Login = async (req , res)=>{
     try{
-        const {email , password} = res.body;
+        const {email , password} = req.body;
 
         const user = await User.findOne({email});
-        if(user){
+        if(!user){
             return res.status(400).json({message:"email dose not exist"});
         }
 
