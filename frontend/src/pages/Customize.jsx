@@ -10,6 +10,7 @@ import image7 from "../assets/img7.jpg";
 import { FcAddImage } from "react-icons/fc";
 import { UserDataContext } from "../context/UserDataContext";
 import { useNavigate } from "react-router-dom";
+import { IoMdArrowRoundBack } from "react-icons/io";
 
 
 
@@ -25,7 +26,8 @@ function Customize(){
      }
 
     return(
-        <div className="w-full min-h-screen bg-gradient-to-t from-[black] to-[#020236] flex justify-center items-center flex-col p-[20px]">
+        <div className="w-full min-h-screen bg-gradient-to-t from-[black] to-[#020236] flex justify-center items-center flex-col p-[20px] relative">
+           <IoMdArrowRoundBack className="absolute top-[30px] left-[30px] text-white w-[25px] h-[25px] cursor-pointer " onClick={()=>navigate("/")} />
             <h1 className="text-white text-[30px] text-center mb-[30px] ">Select your <span className="text-blue-200">Assistant's Avtar</span> </h1>
             <div className="w-[90%] max-w-[60%] flex justify-center items-center flex-wrap gap-[15px]">
                  <Card image={image1}/>
@@ -49,7 +51,7 @@ function Customize(){
 
   w-1/3
   min-w-[150px] h-[60px]
-  bg-#32aacd
+  bg-[#32aacd]
   rounded-full
   mt-[15px]
   shadow-md
