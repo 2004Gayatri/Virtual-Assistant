@@ -31,6 +31,7 @@ import authRouter from "./routes/auth.routes.js";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 import userRouter from "./routes/user.routes.js";
+import geminiResponse from "./gemini.js";
 
 dotenv.config();
 
@@ -48,6 +49,8 @@ app.use(cors({
 // Routes
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
+
+
 
 // Connect DB then start server
 connectDb().then(() => {

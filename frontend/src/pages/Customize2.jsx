@@ -102,7 +102,6 @@
 import React, { useContext, useState } from "react";
 import axios from "axios";
 import { IoMdArrowRoundBack } from "react-icons/io";
-
 import { UserDataContext } from "../context/UserDataContext";
 import { useNavigate } from "react-router-dom";
 
@@ -118,21 +117,17 @@ function Customize2() {
   const handleUpdateAssistant = async () => {
     setLoading(true);
     try {
-      let formData = new FormData();
+      const formData = new FormData();
       formData.append("assistantName", assistantName);
 
+      // ✅ FIX: match backend expected keys
       if (backendImage instanceof File) {
-        formData.append("assistantImage", backendImage);
+        formData.append("file", backendImage); // backend will find this in req.file
       } else if (selectedImage) {
-        formData.append("imageUrl", selectedImage);
+        formData.append("imageUrl", selectedImage); // backend uses imageUrl for URLs
       }
 
       console.log("🧾 Data being sent:");
-      console.log({
-        assistantName,
-        backendImage,
-        selectedImage,
-      });
       for (let pair of formData.entries()) {
         console.log(`${pair[0]}:`, pair[1]);
       }
@@ -140,17 +135,19 @@ function Customize2() {
       const result = await axios.post(
         `${serverUrl}/api/user/update`,
         formData,
-        { withCredentials: true }
+        {
+          withCredentials: true,
+          headers: { "Content-Type": "multipart/form-data" }, // ✅ important
+        }
       );
 
-      setLoading(false);
       setUserData(result.data);
-
+      setLoading(false);
       console.log("✅ Navigation triggered");
       navigate("/");
     } catch (error) {
       setLoading(false);
-      console.log(error);
+      console.error("❌ Update assistant error:", error);
       console.log(error.response?.data || error.message);
     }
   };
@@ -161,28 +158,29 @@ function Customize2() {
         className="absolute top-[30px] left-[30px] text-white w-[25px] h-[25px] cursor-pointer"
         onClick={() => navigate("/customize")}
       />
+
       <h1 className="text-white text-[30px] text-center mb-[30px]">
         Enter your <span className="text-blue-200">Assistant Name</span>
       </h1>
+
       <input
         type="text"
-        placeholder="eg.Sifra"
+        placeholder="eg. Sifra"
         className="w-1/3 h-[60px] outline-none border-2 border-white bg-transparent text-white placeholder-gray-300 px-[20px] py-[10px] rounded-full"
         required
         onChange={(e) => setAssistantName(e.target.value)}
         value={assistantName}
-      ></input>
+      />
+
       {assistantName && (
         <button
           className="
-            w-1/4
-            min-w-[150px] h-[60px]
+            w-1/4 min-w-[150px] h-[60px]
             bg-[#32aacd]
             rounded-full
             mt-[15px]
             shadow-md
-            text-blue-700
-            font-semibold
+            text-blue-700 font-semibold
             border border-blue-300
             hover:bg-blue-100 hover:text-blue-900
             transition-colors duration-200
