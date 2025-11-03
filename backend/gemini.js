@@ -5,7 +5,6 @@ const geminiResponse = async (command,assistantName,userName) => {
     const API_URL =
       "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
     const GEMINI_API_KEY =process.env.GEMINI_API;
-
     const prompt = `You are a virtual assistant named ${assistantName}, created by ${userName}. You are not Google. You behave like a friendly, voice-enabled assistant.
 
 Your job is to understand the user's natural language input and respond ONLY with a JSON object in this format:

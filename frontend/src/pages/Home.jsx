@@ -86,7 +86,6 @@
 //     )
 // }
 
-// export default Home;
 import React, { useContext, useEffect } from 'react';
 import { UserDataContext } from '../context/UserDataContext';
 import { useNavigate } from 'react-router-dom';
@@ -112,6 +111,34 @@ function Home() {
    
     window.speechSynthesis.speak(utterence)
   }
+  const handleCommand=(data)=>{
+    const {type ,userInput , response } = data;
+    speak(response);
+    if(type === 'google_search'){
+      const query = encodeURIComponent(userInput);
+      window.open(`https://www.google.com/search?q=${query}`,'_blank');
+    };
+    if(type === "calculator_open"){
+      window.open(`https://www.google.com/search?q=calculator`,'_blank');
+    }
+    if(type === "instagram_open"){
+      window.open(`https://www.instagram.com`,'_blank');
+    }
+    if(type==="facebook_open"){
+      window.open(`https://www.facebook.com`,'_blank');
+    }
+    if(type==="weather_show"){
+      window.open(`https://www.google.com/search?q=weather`,
+        '_blank'
+      );
+    }
+    if(type === 'youtube_search' || type==='youtube_play'){
+      const query = encodeURIComponent(userInput);
+      window.open(`https://www.youtube.com/results?search_query=${query}`,'_blank');
+    }
+
+    
+  }
 
   useEffect(() => {
     // ✅ Safe SpeechRecognition setup
@@ -134,7 +161,7 @@ function Home() {
       console.log(data);
       //  speak(data.response);
       if (data && data.response) {
-  speak(data.response);
+  handleCommand(data);
 } else if (typeof data === "string") {
   speak(data);
 } else {
