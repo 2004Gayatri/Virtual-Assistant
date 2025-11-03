@@ -3,11 +3,15 @@ import React, { useContext, useEffect, useRef, useState } from 'react';
 import { UserDataContext } from '../context/UserDataContext';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import aiImg from "../assets/ai.gif";
+import userImg from "../assets/user1.gif";
 function Home() {
   const { userData, serverUrl, setUserData , getGeminiResponse } = useContext(UserDataContext);
   const navigate = useNavigate();
   const [listening,setListening]=useState(false);
+  const [userText , setUserText] = useState("");
+   const [aiText , setaiText] = useState("");
+
   const isSpeakingRef = useRef(false);
   const recognitionRef = useRef(null);
   const synth = window.speechSynthesis;
@@ -129,13 +133,17 @@ function Home() {
       const transcript = e.results[e.results.length-1][0].transcript.trim();
       console.log("heard :" + transcript);
        if(transcript.toLowerCase().includes(userData.assistantName.toLowerCase())){
+        setaiText("");
+        setUserText(transcript);
         
         isRecognizingRef.current = false;
         setListening(false)
       const data = await getGeminiResponse(transcript);
       console.log(data);
-    
+     setaiText(data.response);
+     setUserText("")
       handleCommand(data);
+
 
     }
     };
@@ -208,6 +216,8 @@ function Home() {
       <h1 className="text-white text-[20px] mt-4">
         I am {userData?.assistantName}
       </h1>
+      {!aiText && <img src={userImg} alt='' className='w-[200px]'></img>}
+      {aiText && <img src={aiImg} alt='' className='w-[200px]'></img>}
     </div>
   );
 }

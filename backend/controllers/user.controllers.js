@@ -105,11 +105,13 @@
 //        return res.status(500).json({response: "ask assistant error"})
 //     }
 // }
+
+
 import { response } from "express";
 import geminiResponse from "../gemini.js";
 import User from "../models/user.model.js";
 import moment from "moment/moment.js";
-import { use } from "react";
+
 
 export const getCurrentUser = async (req, res) => {
   try {
