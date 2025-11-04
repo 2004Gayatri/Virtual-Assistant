@@ -7,17 +7,17 @@ This assistant listens to your voice commands, understands them using AI, and re
 
 ## 🚀 Features
 
-- 🎤 **Speech Recognition:** Converts your voice to text in real-time.  
-- 💬 **Chat Interface:** Displays both user and AI messages in a clean, animated UI.  
-- 🧠 **AI Response Generation:** Uses Gemini/OpenAI API for smart, context-aware replies.  
-- 🌐 **Web Actions:** Can open websites, search online, or perform predefined tasks.  
-- 🔊 **Speech Synthesis:** Speaks responses aloud using browser’s voice API.  
-- ♾️ **Continuous Listening:** Keeps recognition active automatically.  
-- 🎨 **Modern UI:** Built with React and Tailwind CSS for smooth, responsive design.
+-  **Speech Recognition:** Converts your voice to text in real-time.  
+-  **Chat Interface:** Displays both user and AI messages in a clean, animated UI.  
+-  **AI Response Generation:** Uses Gemini/OpenAI API for smart, context-aware replies.  
+-  **Web Actions:** Can open websites, search online, or perform predefined tasks.  
+-  **Speech Synthesis:** Speaks responses aloud using browser’s voice API.  
+-  **Continuous Listening:** Keeps recognition active automatically.  
+-  **Modern UI:** Built with React and Tailwind CSS for smooth, responsive design.
 
 ---
 
-## 🧩 Tech Stack
+##  Tech Stack
 
 | Layer | Technology | Description |
 |-------|-------------|-------------|
