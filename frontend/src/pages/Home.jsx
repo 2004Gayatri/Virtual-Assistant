@@ -634,9 +634,15 @@ function Home() {
     const open = (url) => window.open(url, '_blank');
 
     switch (type) {
-      case 'google_search':
-        open(`https://www.google.com/search?q=${encodeURIComponent(userInput)}`);
-        break;
+       case 'google_search': {
+  // Clean up the spoken text before searching
+  let query = userInput
+    .replace(/(go to|search|google|for|and|yes|no)/gi, "")
+    .trim();
+
+  open(`https://www.google.com/search?q=${encodeURIComponent(query)}`);
+  break;
+}
       case 'calculator_open':
         open('https://www.google.com/search?q=calculator');
         break;
@@ -657,6 +663,7 @@ function Home() {
         break;
     }
   };
+  
 
   // 🔹 Voice recognition setup
   useEffect(() => {
@@ -811,7 +818,7 @@ function Home() {
       </button>
 
       <button
-        className="hidden lg:block absolute top-[70px] right-5 w-1/6 h-[55px] rounded-full border border-blue-300 text-blue-700 font-semibold hover:bg-blue-100 hover:text-blue-900 transition-all"
+        className="hidden lg:block absolute top-[70px] right-5 w-1/6 h-[55px] rounded-full border border-blue-300 text-blue-700 font-semibold hover:bg-blue-100 hover:text-blue-900 transition-all mt-[20px]"
         onClick={() => navigate('/customize')}
       >
         Customize Assistant
