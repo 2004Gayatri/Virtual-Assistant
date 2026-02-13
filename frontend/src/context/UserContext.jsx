@@ -55,7 +55,7 @@ import { UserDataContext } from "./UserDataContext";
 import axios from "axios";
 
 function UserContext({ children }) {
-  const serverUrl = "http://localhost:8000";
+  const serverUrl = "https://virtual-assistant-backend-4k7q.onrender.com";
 
   const [userData, setUserData] = useState(null);
   const [frontendImage, setFrontendImage] = useState(null);
@@ -114,3 +114,4 @@ function UserContext({ children }) {
 }
 
 export default UserContext;
+
