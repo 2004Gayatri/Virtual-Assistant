@@ -42,7 +42,10 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: [
+  "http://localhost:5173",
+  "https://virtual-assistant-frontend-yi72.onrender.com"
+],
   credentials: true,
 }));
 
@@ -58,3 +61,4 @@ connectDb().then(() => {
     console.log(`Server running on http://localhost:${PORT}`);
   });
 }).catch(err => console.error("DB connection failed:", err));
+
