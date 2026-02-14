@@ -1,5 +1,6 @@
 import React, { useContext, useRef, useState } from "react";
 import Card from "../components/Card";
+// Images for the profile of assistant 
 import image1 from "../assets/img1.jpg";
 import image2 from "../assets/img2.jpg";
 import image3 from "../assets/img3.jpg";
@@ -66,5 +67,6 @@ function Customize(){
         </div>
     )
 }
+
 
 export default Customize;
